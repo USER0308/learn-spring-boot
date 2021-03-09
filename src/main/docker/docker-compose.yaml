@@ -1,0 +1,51 @@
+version: "3"
+networks:
+  cluster:
+    driver: bridge
+services:
+  redis:
+    image: "redis:6.2.0"
+    container_name: "redis"
+    ports:
+      - "6379:6379"
+    expose:
+      - "6379"
+    networks:
+      - cluster
+  mysql:
+    image: "mysql:stable"
+    container_name: "db"
+    ports:
+      - "3306:3306"
+    expose:
+      - "3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=toor
+    volumes:
+      - /home/kexin/Workstation/data:/var/lib/mysql
+    networks:
+      - cluster
+  rabbitmq:
+    image: rabbitmq:management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+  tomcat:
+    image: "learn-spring-boot:1.0.0"
+    container_name: "tomcat"
+    ports:
+      - "80:80"
+      - "8080:8080"
+      - "8033:8033"
+    expose:
+      - "80"
+      - "8080"
+      - "8033"
+    volumes:
+      - ./learn-spring-boot-1.0-SNAPSHOT.jar:/web/app.jar
+      - ./application.yml:/web/config/application.yml
+    depends_on:
+      - mysql
+      - redis
+    networks:
+      - cluster
