@@ -1,5 +1,5 @@
 import com.Application;
-import com.config.ThreadPoolExecutorWrapper;
+import com.common.ThreadPoolExecutorWrapper;
 import com.dao.UserDAO;
 import com.entity.User;
 import lombok.NoArgsConstructor;

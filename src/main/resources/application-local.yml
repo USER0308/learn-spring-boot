@@ -50,3 +50,18 @@ spring:
   aop:
     proxy-target-class: True
 
+business:
+  threadPool:
+    - common:
+       corePoolSize: 3
+       maximumPoolSize: 10
+       keepAlive: 1200
+    - io:
+       corePoolSize: 5
+       maximumPoolSize: 10
+       keepAlive: 1200
+    - computing:
+       corePoolSize: 2
+       maximumPoolSize: 10
+       keepAlive: 1200
+

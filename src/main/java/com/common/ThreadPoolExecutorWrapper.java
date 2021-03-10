@@ -1,4 +1,4 @@
-package com.config;
+package com.common;
 
 import com.utils.ThreadMdcUtil;
 import org.slf4j.MDC;

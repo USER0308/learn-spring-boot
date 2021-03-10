@@ -1,6 +1,6 @@
 package com.controller;
 
-import com.config.ThreadPoolExecutorWrapper;
+import com.common.ThreadPoolExecutorWrapper;
 import com.exception.CustomException;
 import com.constants.ErrorCode;
 import com.dao.UserDAO;
