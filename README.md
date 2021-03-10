@@ -21,3 +21,7 @@ supported:
 * redis
 
 * rabbitMq
+
+* customized thread pool
+
+* RxJava
