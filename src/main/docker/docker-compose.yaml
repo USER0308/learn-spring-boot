@@ -26,26 +26,33 @@ services:
     networks:
       - cluster
   rabbitmq:
-    image: rabbitmq:management
+    image: rabbitmq:3.8-management
     ports:
       - "5672:5672"
       - "15672:15672"
+    expose:
+      - "5672"
+      - "15672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=admin
+    volumes:
+      - /home/kexin/Data/rabbitmq/data:/var/lib/rabbitmq/
+    networks:
+      - cluster
   tomcat:
     image: "learn-spring-boot:1.0.0"
     container_name: "tomcat"
     ports:
-      - "80:80"
       - "8080:8080"
-      - "8033:8033"
     expose:
-      - "80"
       - "8080"
-      - "8033"
     volumes:
       - ./learn-spring-boot-1.0-SNAPSHOT.jar:/web/app.jar
       - ./application.yml:/web/config/application.yml
     depends_on:
       - mysql
       - redis
+      - rabbitmq
     networks:
       - cluster
