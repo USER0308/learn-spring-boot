@@ -25,3 +25,5 @@ supported:
 * customized thread pool
 
 * RxJava
+
+* OkHttp3
