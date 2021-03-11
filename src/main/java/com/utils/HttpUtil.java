@@ -16,15 +16,15 @@ public class HttpUtil {
     public final static MediaType MEDIA_TYPE_JSON = MediaType.parse("application/json; charset=utf-8");
     public final static MediaType MEDIA_TYPE_XML = MediaType.parse("application/xml; charset=utf-8");
 
-    public Response get(String url) {
-        return this.get(url, null, null);
+    public static Response get(String url) {
+        return get(url, null, null);
     }
 
-    public Response get(String url, Map<String, String> params) {
-        return this.get(url, params, null);
+    public static Response get(String url, Map<String, String> params) {
+        return get(url, params, null);
     }
 
-    public Response get(String url, Map<String, String> params, Map<String, String> headers) {
+    public static Response get(String url, Map<String, String> params, Map<String, String> headers) {
         OkHttpClient client = new OkHttpClient.Builder()
                 .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
                 .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS)
@@ -56,15 +56,15 @@ public class HttpUtil {
         return null;
     }
 
-    public Response post(String url) {
-        return this.post(url, null, null);
+    public static Response post(String url) {
+        return post(url, null, null);
     }
 
-    public Response post(String url, String json) {
-        return this.post(url, json, MEDIA_TYPE_JSON);
+    public static Response post(String url, String json) {
+        return post(url, json, MEDIA_TYPE_JSON);
     }
 
-    public Response post(String url, String data, MediaType mediaType) {
+    public static Response post(String url, String data, MediaType mediaType) {
         RequestBody requestBody = RequestBody.create(mediaType, data);
         OkHttpClient client = new OkHttpClient.Builder()
                 .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)

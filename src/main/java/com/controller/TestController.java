@@ -28,4 +28,9 @@ public class TestController {
     public void testThreadPool() {
         testService.testThreadPool();
     }
+
+    @GetMapping("/testHttp")
+    public void testHttp() {
+        testService.testHttp();
+    }
 }
