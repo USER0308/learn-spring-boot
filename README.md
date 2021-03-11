@@ -27,3 +27,5 @@ supported:
 * RxJava
 
 * OkHttp3
+
+* Guava
