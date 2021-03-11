@@ -1,5 +1,6 @@
 package com.service.impl;
 
+import com.google.common.collect.Maps;
 import com.rabbitmq.MessageProducer;
 import com.redis.RedisService;
 import com.service.TestService;
@@ -56,7 +57,8 @@ public class TestServiceImpl implements TestService {
     @Override
     public void testHttp() {
         String url = "https://baidu.com";
-        Map<String, String> params = new HashMap<>();
+//        Map<String, String> params = new HashMap<>();
+        Map<String, String> params = Maps.newHashMap();
         params.put("wd", "springboot");
         Response response = HttpUtil.get(url, params);
         if (response.isSuccessful() && null != response.body()) {
