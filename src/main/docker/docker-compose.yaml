@@ -14,7 +14,7 @@ services:
       - cluster
   mysql:
     image: "mysql:stable"
-    container_name: "db"
+    container_name: "mysql"
     ports:
       - "3306:3306"
     expose:
@@ -26,7 +26,8 @@ services:
     networks:
       - cluster
   rabbitmq:
-    image: rabbitmq:3.8-management
+    image: "rabbitmq:3.8-management"
+    container_name: "rabbitmq"
     ports:
       - "5672:5672"
       - "15672:15672"
