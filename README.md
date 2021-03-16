@@ -1,5 +1,11 @@
 ## spring-boot basic feature for web
 
+### Aims
+
+Recording how to build a basic spring-boot project integrating with several middle-ware for web application.
+
+---
+
 ### feature
 
 supported:
@@ -29,3 +35,5 @@ supported:
 * OkHttp3
 
 * Guava
+
+* cicd
