@@ -1,4 +1,4 @@
-## spring-boot basic feature for web
+## Spring-boot basic feature for web
 
 ### Aims
 
@@ -6,29 +6,29 @@ Recording how to build a basic spring-boot project integrating with several midd
 
 ---
 
-### feature
+### Feature
 
-supported:
+Supported:
 
-* trace id
+* Trace id
 
-* logging in files and compress
+* Logging in files and compress
 
-* filter
+* Filter
 
-* interpreter
+* Interpreter
 
-* exception handler
+* Exception handler
 
-* request & response wrapper
+* Request & response wrapper
 
-* scheduled task
+* Scheduled task
 
-* redis
+* Redis
 
-* rabbitMq
+* RabbitMq
 
-* customized thread pool
+* Customized thread pool
 
 * RxJava
 
@@ -36,4 +36,4 @@ supported:
 
 * Guava
 
-* cicd
+* CICD
