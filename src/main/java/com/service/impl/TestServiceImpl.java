@@ -1,9 +1,11 @@
 package com.service.impl;
 
+import com.common.ThreadPoolExecutorWrapper;
 import com.google.common.collect.Maps;
 import com.rabbitmq.MessageProducer;
 import com.redis.RedisService;
 import com.service.TestService;
+import com.task.ThreadTask;
 import com.utils.HttpUtil;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.Response;
@@ -18,7 +20,9 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @Service
@@ -46,12 +50,25 @@ public class TestServiceImpl implements TestService {
     }
 
     @Override
-    public void testThreadPool() {
+    public void testThreadPoolMethod1() {
         Observable.just(1).map(integer -> {
             log.info("current Thread Name = [{}]", Thread.currentThread().getName());
             return integer.toString();
         }).subscribeOn(Schedulers.from(commonThreadPoolExecutor)).subscribe(log::info);
 
+    }
+
+    @Override
+    public void testThreadPoolMethod2() {
+        ThreadTask task = new ThreadTask();
+        ThreadPoolExecutorWrapper threadPoolExecutorWrapper = new ThreadPoolExecutorWrapper(0, Integer.MAX_VALUE,
+                60L, TimeUnit.SECONDS, new SynchronousQueue<>());
+        threadPoolExecutorWrapper.execute(new Runnable() {
+            @Override
+            public void run() {
+                log.info("in thread");
+            }
+        });
     }
 
     @Override

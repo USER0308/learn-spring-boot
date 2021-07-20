@@ -4,6 +4,7 @@ import com.dao.UserDAO;
 import com.entity.User;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,12 +15,8 @@ import java.util.concurrent.Callable;
 @NoArgsConstructor
 //public class ThreadTask implements Throwable<Boolean> {
 public class ThreadTask implements Runnable {
-//    @Autowired
+    @Autowired
     private UserDAO userDAO;
-
-    public ThreadTask(UserDAO userDao) {
-        this.userDAO = userDao;
-    }
 
     @Override
 //    public Boolean call() throws exception {
