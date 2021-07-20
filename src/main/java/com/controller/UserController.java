@@ -41,14 +41,19 @@ public class UserController {
         return userService.listAllUser();
     }
 
-    @GetMapping(value = "/getByUuid/{uuid}")
-    public User getUserByUuid(@PathVariable("uuid") String uuid) {
+    @GetMapping(value = "/getByUuid")
+    public User getUserByUuid(@RequestParam("uuid") String uuid) {
         return userService.getUserByUuid(uuid);
     }
 
-    @GetMapping(value = "/getByName/{name}")
-    public User getUserByName(@PathVariable("name") String name) {
+    @GetMapping(value = "/getByName")
+    public User getUserByName(@RequestParam("name") String name) {
         return userService.getUserByName(name);
+    }
+
+    @GetMapping(value = "/checkNameExist")
+    public Boolean checkNameExist(@RequestParam("name") String name) {
+        return userService.checkNameExist(name);
     }
 
     @PostMapping(value = "/create")
@@ -61,8 +66,8 @@ public class UserController {
         return userService.updateUser(updateUserRequest.getUuid(), updateUserRequest.getNewName());
     }
 
-    @DeleteMapping(value = "/delete/{uuid}")
-    public User updateUser(@PathVariable("uuid") String uuid) {
+    @DeleteMapping(value = "/delete")
+    public User updateUser(@RequestParam("uuid") String uuid) {
         return userService.deleteUser(uuid);
     }
 }

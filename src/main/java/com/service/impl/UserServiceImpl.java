@@ -19,6 +19,11 @@ public class UserServiceImpl implements UserService {
     private UserDAO userDAO;
 
     @Override
+    public Boolean checkNameExist(String name) {
+        return null != userDAO.getByName(name);
+    }
+
+    @Override
     public User createUser(String userName) {
         User user = new User();
         user.setUuid(UuidGenerator.generateWithName("User"));

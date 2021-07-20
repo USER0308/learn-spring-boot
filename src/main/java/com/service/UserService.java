@@ -5,11 +5,12 @@ import com.entity.User;
 import java.util.List;
 
 public interface UserService {
-    public User createUser(String userName);
-    public User updateUser(String uuid, String newName);
-    public User deleteUser(String uuid);
-    public User getUserByUuid(String uuid);
-    public User getUserByName(String name);
-    public List<User> listAllUser();
-    public List<User> findByNameLike(String nameLike);
+    Boolean checkNameExist(String name);
+    User createUser(String userName);
+    User updateUser(String uuid, String newName);
+    User deleteUser(String uuid);
+    User getUserByUuid(String uuid);
+    User getUserByName(String name);
+    List<User> listAllUser();
+    List<User> findByNameLike(String nameLike);
 }
