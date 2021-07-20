@@ -13,6 +13,7 @@ public enum ErrorCode {
     PARAM_REQUIRED("A00004", "parameter required"),
     AUTHENTICATION_FAILURE("A00005", "authentication failure"),
     PERMISSION_DENY("A00006", "permission deny"),
+    ALREADY_EXIST("A00007", "already exist")
 
     ;
 

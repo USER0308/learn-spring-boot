@@ -34,7 +34,7 @@ public class UserDAOTest {
 
     @Test
     public void getUser() {
-        List<User> userList = userDAO.findByName("user02");
+        List<User> userList = userDAO.findByNameLike("user02");
         if (null == userList) {
             log.info("userList is null");
         }
@@ -58,7 +58,7 @@ public class UserDAOTest {
     @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
     @Rollback(false)
     public void inner() {
-        List<User> userList = userDAO.findByName("user05");
+        List<User> userList = userDAO.findByNameLike("user05");
         if (null == userList || 0 == userList.size()) {
             log.info("userList is empty");
             return;

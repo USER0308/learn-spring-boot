@@ -31,7 +31,7 @@ public class ThreadTask implements Callable<Boolean> {
 
     @Override
     public Boolean call() throws Exception {
-        List<User> userList = userDAO.findByName("user77777777");
+        List<User> userList = userDAO.findByNameLike("user77777777");
         if (null == userList || 0 == userList.size()) {
             log.info("userList is null or empty in call()");
             return Boolean.FALSE;

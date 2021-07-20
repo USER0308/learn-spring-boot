@@ -9,8 +9,10 @@ import java.util.List;
 
 @Component
 public interface UserDAO extends JpaRepository<User,Integer> {
-    List<User> findByName(String name);
+    List<User> findByNameLike(String name);
+
+    User getByName(String name);
 
 //    @Query(nativeQuery = true, value = "select * from user where uuid=:uuid and enable_flag=1")
-    User findByUuid(String uuid);
+    User getByUuid(String uuid);
 }

@@ -25,7 +25,7 @@ public class ThreadTask implements Runnable {
 //    public Boolean call() throws exception {
       public void run() {
         log.info("in call(), before finding user");
-        List<User> userList = userDAO.findByName("aaaFinally");
+        List<User> userList = userDAO.findByNameLike("aaaFinally");
         if (null == userList || 0 == userList.size()) {
             log.info("userList is null or empty in call()");
 //            return Boolean.FALSE;

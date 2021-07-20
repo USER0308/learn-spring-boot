@@ -8,6 +8,7 @@ import com.common.CustomHttpServletRequestWrapper;
 import com.common.CustomHttpServletResponseWrapper;
 import com.constants.ErrorCode;
 import com.constants.PortalConstants;
+import com.entity.User;
 import com.exception.CustomException;
 import com.response.BaseResponse;
 import com.utils.UuidGenerator;
@@ -82,8 +83,6 @@ public class LoggerFilter implements Filter {
                 baseResponse = new BaseResponse(requestId, ErrorCode.UNKNOWN_ERROR.getCode(), ErrorCode.UNKNOWN_ERROR.getMessage(), "未知错误");
             }
         }
-
-        log.info("baseResponse = [{}]", baseResponse);
         ServletOutputStream outputStream = response.getOutputStream();
         outputStream.write(JSONObject.toJSONString(baseResponse).getBytes());
         outputStream.flush();

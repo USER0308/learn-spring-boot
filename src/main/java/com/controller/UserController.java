@@ -1,17 +1,14 @@
 package com.controller;
 
 import com.common.ThreadPoolExecutorWrapper;
-import com.exception.CustomException;
-import com.constants.ErrorCode;
 import com.dao.UserDAO;
 import com.entity.User;
 import com.request.CreateUserRequest;
 import com.request.UpdateUserRequest;
+import com.service.UserService;
 import com.task.ThreadTask;
-import com.utils.UuidGenerator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,42 +27,43 @@ import java.util.concurrent.TimeUnit;
 public class UserController {
     @Autowired
     private UserDAO userDAO;
+    @Autowired
+    private UserService userService;
 
 
     @GetMapping(value = "/index")
     public String index() {
-        return "\\{'message': 'index'\\}";
+        return "index";
     }
 
-    @GetMapping(value = "/get/{uuid}")
-    public User getUser(@PathVariable("uuid") String uuid) {
-        User user = userDAO.findByUuid(uuid);
-        if (null == user) {
-            throw new CustomException(ErrorCode.NOT_FOUND);
-        }
-        log.info("user is [{}]", user);
-        return user;
+    @GetMapping(value = "/list")
+    public List<User> listUser() {
+        return userService.listAllUser();
+    }
+
+    @GetMapping(value = "/getByUuid/{uuid}")
+    public User getUserByUuid(@PathVariable("uuid") String uuid) {
+        return userService.getUserByUuid(uuid);
+    }
+
+    @GetMapping(value = "/getByName/{name}")
+    public User getUserByName(@PathVariable("name") String name) {
+        return userService.getUserByName(name);
     }
 
     @PostMapping(value = "/create")
-    public ResponseEntity createUser(@RequestBody CreateUserRequest createUserRequest) {
-        User user = new User();
-        user.setUuid(UuidGenerator.generateWithName("User"));
-        user.setName(createUserRequest.getName());
-        user.setEnableFlag(true);
-        userDAO.save(user);
-        return ResponseEntity.ok(user.toString());
+    public User createUser(@RequestBody CreateUserRequest createUserRequest) {
+        return userService.createUser(createUserRequest.getName());
     }
 
     @PutMapping(value = "/update")
-    public ResponseEntity updateUser(@RequestBody UpdateUserRequest updateUserRequest) {
-        User user = userDAO.findByUuid(updateUserRequest.getUuid());
-        if (null == user) {
-            throw new CustomException(ErrorCode.NOT_FOUND);
-        }
-        user.setName(updateUserRequest.getNewName());
-        userDAO.save(user);
-        return ResponseEntity.ok(user.toString());
+    public User updateUser(@RequestBody UpdateUserRequest updateUserRequest) {
+        return userService.updateUser(updateUserRequest.getUuid(), updateUserRequest.getNewName());
+    }
+
+    @DeleteMapping(value = "/delete/{uuid}")
+    public User updateUser(@PathVariable("uuid") String uuid) {
+        return userService.deleteUser(uuid);
     }
 
 
@@ -113,7 +111,7 @@ public class UserController {
 
     @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
     public void inner() {
-        List<User> userList = userDAO.findByName("user05");
+        List<User> userList = userDAO.findByNameLike("user05");
         if (null == userList || 0 == userList.size()) {
             log.info("userList is empty");
             return;

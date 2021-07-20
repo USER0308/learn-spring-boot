@@ -25,7 +25,7 @@ public class IndexForOpen {
 
     @GetMapping(value = "/get/{uuid}")
     public User getUser(@PathVariable("uuid") String uuid) {
-        User user = userDAO.findByUuid(uuid);
+        User user = userDAO.getByUuid(uuid);
         if (null == user) {
             throw new CustomException(ErrorCode.NOT_FOUND);
         }
