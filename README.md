@@ -37,3 +37,5 @@ Supported:
 * Guava
 
 * CICD
+
+* Swagger
