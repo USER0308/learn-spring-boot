@@ -12,6 +12,10 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * 自定义线程池，包括三种线程池，通用线程池、io密集型线程池，计算密集型线程池
+ * 理论上来说，io密集型线程池核心数设置为cpu数量的2倍，计算密集型线程池核心线程数设置为cpu数量
+ */
 @Component
 public class CustomThreadPoolExecutorConfig {
     @Autowired

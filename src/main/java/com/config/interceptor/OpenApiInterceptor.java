@@ -1,4 +1,4 @@
-package com.config;
+package com.config.interceptor;
 
 import com.constants.ErrorCode;
 import com.exception.CustomException;
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
 @Slf4j
-public class OpenApiInterpreter extends HandlerInterceptorAdapter {
+public class OpenApiInterceptor extends HandlerInterceptorAdapter {
 
     private String pubKey = "key";
     private String secKey = "secret";
