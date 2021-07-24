@@ -4,6 +4,8 @@ import com.entity.User;
 import com.service.TestService;
 import com.service.UserService;
 import com.task.ThreadTask;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;
@@ -20,15 +22,29 @@ import java.util.concurrent.ThreadPoolExecutor;
 @Slf4j
 @RestController
 @RequestMapping("/business/test")
+@Api(value = "测试类")
 public class TestController {
     @Autowired
     private UserService userService;
     @Autowired
     private TestService testService;
 
-    @GetMapping
-    public String index() {
+    @ApiOperation(value = "基本类型返回值String测试")
+    @GetMapping("/string")
+    public String returnString() {
         return "index";
+    }
+
+    @ApiOperation(value = "基本类型返回值Boolean测试")
+    @GetMapping("/boolean")
+    public Boolean returnBoolean() {
+        return true;
+    }
+
+    @ApiOperation(value = "基本类型返回值Integer测试")
+    @GetMapping("/int")
+    public int returnInt() {
+        return 200;
     }
 
     @GetMapping("/testRedis")
