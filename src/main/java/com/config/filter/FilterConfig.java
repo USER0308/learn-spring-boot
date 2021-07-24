@@ -11,19 +11,20 @@ public class FilterConfig {
      * @return
      */
     @Bean
-    public FilterRegistrationBean registFilter() {
+    public FilterRegistrationBean<GlobalFilter> registGlobalFilter() {
         FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+        registrationBean.setFilter(new GlobalFilter());
+        registrationBean.addUrlPatterns("/*");
+        registrationBean.setOrder(1);
+        return registrationBean;
+    }
 
-//        registrationBean.setFilter(new GlobalFilter());
-//        registrationBean.addUrlPatterns("/*");
-//        registrationBean.setOrder(1);
-
+    @Bean
+    public FilterRegistrationBean<LoggerFilter> registLoggerFilter() {
+        FilterRegistrationBean registrationBean = new FilterRegistrationBean();
         registrationBean.setFilter(new LoggerFilter());
         registrationBean.addUrlPatterns("/business/*");
         registrationBean.setOrder(2);
-
-
-
         return registrationBean;
     }
 }
