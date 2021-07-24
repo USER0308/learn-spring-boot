@@ -1,4 +1,4 @@
-package com.config;
+package com.config.filter;
 
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -6,12 +6,24 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class FilterConfig {
+    /**
+     * 过滤器，对所有请求设置requestId，并记录request参数和response参数
+     * @return
+     */
     @Bean
     public FilterRegistrationBean registFilter() {
         FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+
+//        registrationBean.setFilter(new GlobalFilter());
+//        registrationBean.addUrlPatterns("/*");
+//        registrationBean.setOrder(1);
+
         registrationBean.setFilter(new LoggerFilter());
-        registrationBean.addUrlPatterns("/*");
-        registrationBean.setOrder(1);
+        registrationBean.addUrlPatterns("/business/*");
+        registrationBean.setOrder(2);
+
+
+
         return registrationBean;
     }
 }
