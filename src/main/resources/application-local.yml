@@ -50,6 +50,11 @@ spring:
   aop:
     proxy-target-class: True
 
+eureka:
+  client:
+    service-url:
+      defaultZone:  http://127.0.0.1:2080/eureka
+
 business:
   threadPool:
     - common:
