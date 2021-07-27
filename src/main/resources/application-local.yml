@@ -69,4 +69,3 @@ business:
        corePoolSize: 2
        maximumPoolSize: 10
        keepAlive: 1200
-

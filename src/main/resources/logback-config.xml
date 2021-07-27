@@ -21,7 +21,7 @@
         <!--文件滚动模式-->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--日志文件输出的文件名,可设置文件类型为gz,开启文件压缩-->
-            <FileNamePattern>${LOG_HOME}/%d{yyyy-MM-dd}/application.%i.log.zip</FileNamePattern>
+            <FileNamePattern>${LOG_HOME}/%d{yyyy-MM-dd}/user-application.%i.log.zip</FileNamePattern>
             <!--日志文件保留天数-->
             <MaxHistory>180</MaxHistory>
             <!--按大小分割同一天的-->

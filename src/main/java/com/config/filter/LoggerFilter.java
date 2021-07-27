@@ -15,6 +15,7 @@ import com.utils.UuidGenerator;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
 import javax.servlet.FilterConfig;
@@ -28,9 +29,6 @@ import java.util.Map;
 
 @Slf4j
 public class LoggerFilter implements Filter {
-    @Value("${loggerFilter.enabled:false}")
-    private boolean loggerFilter;
-
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
     }
@@ -104,9 +102,6 @@ public class LoggerFilter implements Filter {
     }
 
     private void logRequest(HttpServletRequest request) {
-        if (!loggerFilter) {
-            return;
-        }
         log.info("request method=[{}], path=[{}]", request.getMethod(), request.getServletPath());
         Enumeration<String> headNames = request.getHeaderNames();
         while(headNames.hasMoreElements()){
