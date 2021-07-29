@@ -39,3 +39,5 @@ Supported:
 * CICD
 
 * Swagger
+
+* Cache
