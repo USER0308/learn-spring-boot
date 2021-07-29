@@ -19,8 +19,8 @@ public class User extends ModifiedEntity {
     @Column(name = "name")
     private String name;
 
-    @Override
-    public String toString() {
-        return JSONObject.toJSONString(this);
-    }
+//    @Override
+//    public String toString() {
+//        return JSONObject.toJSONString(this);
+//    }
 }

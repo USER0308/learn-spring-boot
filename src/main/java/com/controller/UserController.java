@@ -53,7 +53,7 @@ public class UserController {
     }
 
     @DeleteMapping(value = "/delete")
-    public User updateUser(@RequestParam("uuid") String uuid) {
+    public User deleteUser(@RequestParam("uuid") String uuid) {
         return userService.deleteUser(uuid);
     }
 }

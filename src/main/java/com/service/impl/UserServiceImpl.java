@@ -8,12 +8,17 @@ import com.service.UserService;
 import com.utils.UuidGenerator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Slf4j
 @Service
+@CacheConfig(cacheNames = "lehoyan.cache.user")
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserDAO userDAO;
@@ -24,6 +29,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+//    @Cacheable(key = "#result.uuid")
     public User createUser(String userName) {
         User user = new User();
         user.setUuid(UuidGenerator.generateWithName("User"));
@@ -34,6 +40,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @CachePut(key = "#uuid")
     public User updateUser(String uuid, String newName) {
         User user = userDAO.getByUuid(uuid);
         log.info("check uuid if user exist");
@@ -51,6 +58,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @CacheEvict
     public User deleteUser(String uuid) {
         User user = userDAO.getByUuid(uuid);
         if (null == user) {
@@ -62,6 +70,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Cacheable
     public User getUserByUuid(String uuid) {
         User user = userDAO.getByUuid(uuid);
         if (null == user) {
